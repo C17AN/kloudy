@@ -14,7 +14,7 @@ export const getClusterList = async (req, res) => {
 export const updateCluster = async (req, res) => {
   try {
     kc.loadFromDefault();
-    const data = kc.setCurrentContext(`"${req.body.clusterName}"`);
+    const data = kc.setCurrentContext("minikube");
     console.log(req.body.clusterName)
     res.status(200).json(data);
   } catch (err) {

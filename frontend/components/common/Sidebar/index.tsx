@@ -24,6 +24,10 @@ const Sidebar = ({}: SidebarProps) => {
     initData();
   }, [contextList]);
 
+  const selectNamespace = (name: string) => {
+    setSelectedNamespace(name);
+  };
+
   return (
     <aside className="w-64 h-full mr-10 py-4 px-6 rounded-xl bg-primary shadow-2xl">
       <div className="flex items-center bg-white rounded-md py-2 px-4">
@@ -40,7 +44,15 @@ const Sidebar = ({}: SidebarProps) => {
         <ul className="space-y-4">
           {namespaceList.map(({ metadata }) => {
             const { name, uid } = metadata;
-            return <SidebarItem text={name} key={uid} />;
+            const isSelected = name === selectedNamespace;
+            return (
+              <SidebarItem
+                text={name}
+                key={uid}
+                onClick={() => selectNamespace(name)}
+                isSelected={isSelected}
+              />
+            );
           })}
         </ul>
       </SidebarItemContainer>

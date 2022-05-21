@@ -2,7 +2,7 @@ import React from "react";
 
 type TitleProps = {
   text: string;
-  hasDivider: boolean;
+  hasDivider?: boolean;
 };
 
 const Title = ({ text, hasDivider = true }: TitleProps) => {

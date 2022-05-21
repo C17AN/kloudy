@@ -1,6 +1,7 @@
 import express from "express";
 import k8s from "@kubernetes/client-node";
 import clusterRouter from "./controllers/cluster.js";
+import nodeRouter from "./controllers/node.js";
 import namespaceRouter from "./controllers/namespace.js";
 import cors from "cors"
 import bodyParser from "body-parser"
@@ -19,3 +20,4 @@ app.listen(8080, () => {
 
 app.use("/k8s/cluster", clusterRouter);
 app.use("/k8s/namespace", namespaceRouter);
+app.use("/k8s/node", nodeRouter);
