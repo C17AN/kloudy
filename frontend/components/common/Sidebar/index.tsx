@@ -11,6 +11,7 @@ type SidebarProps = {};
 const Sidebar = ({}: SidebarProps) => {
   const [contextList, setContextList] = useState<any>([]);
   const [namespaceList, setNamespaceList] = useState<any>([]);
+  const [selectedNamespace, setSelectedNamespace] = useState<any>();
 
   const initData = async () => {
     const contextList = await getContextList();
