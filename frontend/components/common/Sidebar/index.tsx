@@ -29,7 +29,7 @@ const Sidebar = ({}: SidebarProps) => {
   };
 
   return (
-    <aside className="w-64 h-full mr-10 py-4 px-6 rounded-xl bg-primary shadow-2xl">
+    <aside className="w-64 h-full mr-10 py-4 px-6 rounded-xl bg-primary shadow-md">
       <div className="flex items-center bg-white rounded-md py-2 px-4">
         <Image src="/icons/k8s.svg" width="48" height="48" />
         <div className="flex flex-col ml-2">

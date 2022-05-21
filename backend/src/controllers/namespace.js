@@ -1,8 +1,9 @@
 import express from "express";
-import { getNamespaceList } from "../services/namespace.js";
+import { createNamespace, getNamespaceList } from "../services/namespace.js";
 
 const router = express.Router();
 
 router.get('/', getNamespaceList)
+router.post('/', createNamespace)
 
 export default router;
