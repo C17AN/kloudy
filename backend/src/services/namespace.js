@@ -17,7 +17,7 @@ export const createNamespace = async (req, res) => {
   try {
     kc.loadFromDefault();
     const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
-    const data = await k8sApi.createNamespace({ apiVersion: "v1", kind: "Namespace", metadata: { name: "wowwow" } });
+    const data = await k8sApi.createNamespace({ apiVersion: "v1", kind: "Namespace", metadata: { name: req.body.name } });
     const { items } = data.response.body
     res.status(200).json(items);
   } catch (err) {

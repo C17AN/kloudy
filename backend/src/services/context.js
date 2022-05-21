@@ -1,7 +1,7 @@
 import k8s from '@kubernetes/client-node';
 import { kc } from "../app.js";
 
-export const getClusterList = async (req, res) => {
+export const getContextList = async (req, res) => {
   try {
     kc.loadFromDefault();
     const data = kc.getContexts();
@@ -11,10 +11,10 @@ export const getClusterList = async (req, res) => {
   }
 };
 
-export const updateCluster = async (req, res) => {
+export const updateContext = async (req, res) => {
   try {
     kc.loadFromDefault();
-    const data = kc.setCurrentContext("minikube");
+    const data = kc.setCurrentContext();
     console.log(req.body.clusterName)
     res.status(200).json(data);
   } catch (err) {

@@ -9,8 +9,7 @@ const RootPage: NextPage = () => {
   return (
     <div className="h-full flex flex-col">
       <Title text="전체 리소스 목록" />
-      <Select items={["하하"]} />
-      <ResourceContainer resourceName="파드" />
+      <ResourceContainer resourceName="노드 목록" items={[{ name: "1" }, { name: "2" }]} />
     </div>
   );
 };

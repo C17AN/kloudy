@@ -1,8 +1,9 @@
 import express from "express";
-import { getNodeList } from "../services/node.js";
+import { createNode, getNodeList } from "../services/node.js";
 
 const router = express.Router();
 
 router.get('/', getNodeList)
+router.post('/', createNode)
 
 export default router;
