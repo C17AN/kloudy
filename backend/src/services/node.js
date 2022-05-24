@@ -5,7 +5,8 @@ export const getNodeList = async (req, res) => {
   try {
     kc.loadFromDefault();
     const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
-    const data = await k8sApi.listNode()
+    const result = await k8sApi.listNode()
+    const data = result.response.body.items
     res.status(200).json(data);
   } catch (err) {
     console.error(err)

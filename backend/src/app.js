@@ -1,11 +1,12 @@
 import express from "express";
 import k8s from "@kubernetes/client-node";
-// TODO: 라우터 부분 하나로 묶에서 임포트하기
+// TODO: 라우터 부분 하나로 묶어서 임포트하기
 import contextRouter from "./controllers/context.js";
 import clusterRouter from "./controllers/cluster.js";
 import nodeRouter from "./controllers/node.js";
 import deploymentRouter from "./controllers/deployment.js";
 import podRouter from "./controllers/pod.js";
+import serviceRouter from "./controllers/service.js";
 import namespaceRouter from "./controllers/namespace.js";
 import cors from "cors"
 import bodyParser from "body-parser"
@@ -26,5 +27,6 @@ app.use("/k8s/context", contextRouter);
 app.use("/k8s/cluster", clusterRouter);
 app.use("/k8s/namespace", namespaceRouter);
 app.use("/k8s/deployment", deploymentRouter);
+app.use("/k8s/service", serviceRouter);
 app.use("/k8s/node", nodeRouter);
 app.use("/k8s/pod", podRouter);

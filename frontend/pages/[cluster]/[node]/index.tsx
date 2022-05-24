@@ -16,7 +16,7 @@ const NodePage = (props: Props) => {
 
   return (
     <div className="h-full flex flex-col">
-      <Title text="파드 목록" />
+      <Title text="리소스 목록" />
       <ResourceList resourceName="노드" items={data} />
     </div>
   );
