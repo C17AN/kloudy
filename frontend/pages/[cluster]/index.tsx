@@ -8,7 +8,10 @@ const ClusterPage = (props: Props) => {
   return (
     <div className="h-full flex flex-col">
       <Title text="클러스터 리소스 목록" />
-      <ResourceList resourceName="노드 목록" items={[{ name: "1" }, { name: "2" }]} />
+      <ResourceList
+        resourceName="노드"
+        items={[{ name: "1" }, { name: "2" }]}
+      />
     </div>
   );
 };

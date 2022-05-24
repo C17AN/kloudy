@@ -1,9 +1,15 @@
 import React from "react";
 
-type Props = {};
+type ModalProps = {
+  children: React.ReactNode;
+};
 
-const Modal = (props: Props) => {
-  return <div>Modal</div>;
+const Modal = ({ children }: ModalProps) => {
+  return (
+    <div className="fixed top-0 left-0 w-full h-full bg-gray-700 bg-opacity-70">
+      {children}
+    </div>
+  );
 };
 
 export default Modal;
