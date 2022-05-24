@@ -10,5 +10,3 @@ export const getCurrentCluster = async (req, res) => {
     res.status(500).json({ message: "Error while fetching current cluster" });
   }
 };
-
-
