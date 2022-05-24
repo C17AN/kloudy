@@ -10,7 +10,12 @@ const NamespacePage = (props: Props) => {
       <Title text="네임스페이스 리소스 목록" />
       <ResourceList
         resourceName="노드"
-        items={[{ name: "1" }, { name: "2" }]}
+        items={[
+          { name: "1" },
+          { name: "2" },
+          { name: "3" },
+          { name: "4" }
+        ]}
       />
     </div>
   );

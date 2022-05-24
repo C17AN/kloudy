@@ -8,6 +8,8 @@ import Input from "../Input";
 import ResouceCreateModal from "./ResouceCreateModal";
 import cx from "classnames";
 import { motion } from "framer-motion";
+import nodeConditionChecker from "utils/k8s/node/conditionChecker";
+import ResouceDetailModal from "./ResourceDetailModal";
 
 type ResourceContainerProps = {
   resourceName: string;
@@ -20,16 +22,23 @@ const ResourceList = ({
   resourceName,
   items
 }: ResourceContainerProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] =
+    useState(false);
+  const [isDetailModalOpen, setIsDetailModalOpen] =
+    useState(false);
   const [itemDisplayOption, setItemDisplayOption] =
     useState<itemDisplayType>("LIST");
 
   const openResourceCreateModal = () => {
-    setIsModalOpen(isOpen => !isOpen);
+    setIsCreateModalOpen(isOpen => !isOpen);
+  };
+
+  const openResourceDetailModal = () => {
+    setIsDetailModalOpen(isOpen => !isOpen);
   };
 
   return (
-    <div className="flex-1 rounded-md border-[1px] py-4 px-6 mt-2 border-gray-200 h-full w-full">
+    <div className="flex-1 rounded-md border-[1px] py-4 px-6 pb-24 mt-2 border-gray-200 h-full w-full overflow-y-hidden">
       <section className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <h3 className="text-2xl font-semibold mr-4">
@@ -77,24 +86,43 @@ const ResourceList = ({
       </section>
       <motion.ul
         layout
-        className={cx("flex-col gap-4", {
-          flex: itemDisplayOption === "LIST",
-          grid: itemDisplayOption === "ALBUM",
-          "grid-cols-4": itemDisplayOption === "ALBUM"
-        })}
+        className={cx(
+          "flex flex-col gap-4 flex-1 py-4 px-2 overflow-y-auto",
+          {
+            flex: itemDisplayOption === "LIST",
+            grid: itemDisplayOption === "ALBUM",
+            "h-full": itemDisplayOption === "LIST",
+            "grid-cols-4": itemDisplayOption === "ALBUM"
+          }
+        )}
       >
-        {items.map(item => (
-          <Node
-            name={item.name}
-            key={item.name}
-            status="RUNNING"
-          />
-        ))}
+        {items?.map(item => {
+          const { name, creationTimestamp } = item.metadata;
+          const { conditions } = item.status;
+          const isReady = nodeConditionChecker(conditions);
+
+          return (
+            <Node
+              name={name}
+              createdAt={creationTimestamp}
+              conditions={conditions}
+              key={item.name}
+              isReady={isReady}
+              onClick={openResourceDetailModal}
+            />
+          );
+        })}
       </motion.ul>
-      {isModalOpen && (
+      {isCreateModalOpen && (
         <ResouceCreateModal
           resourceName={resourceName}
-          onClose={() => setIsModalOpen(false)}
+          onClose={() => setIsCreateModalOpen(false)}
+        />
+      )}
+      {isDetailModalOpen && (
+        <ResouceDetailModal
+          resourceName={resourceName}
+          onClose={() => setIsDetailModalOpen(false)}
         />
       )}
     </div>

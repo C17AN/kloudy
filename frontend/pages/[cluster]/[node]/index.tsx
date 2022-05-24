@@ -7,12 +7,17 @@ import { useQuery } from "react-query";
 type Props = {};
 
 const NodePage = (props: Props) => {
-  const { data, isLoading, error } = useQuery("node", getNodeList);
+  const { data, isLoading, error } = useQuery(
+    "node",
+    getNodeList
+  );
+
   console.log(data);
+
   return (
     <div className="h-full flex flex-col">
       <Title text="파드 목록" />
-      <ResourceList resourceName="노드" items={[{ name: "1" }, { name: "2" }]} />
+      <ResourceList resourceName="노드" items={data} />
     </div>
   );
 };
