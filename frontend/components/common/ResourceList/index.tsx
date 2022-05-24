@@ -6,19 +6,23 @@ import {
 } from "@heroicons/react/outline";
 import Input from "../Input";
 import ResouceCreateModal from "./ResouceCreateModal";
+import cx from "classnames";
+import { motion } from "framer-motion";
 
 type ResourceContainerProps = {
   resourceName: string;
   items: any[];
-  displayType?: "ALBUM" | "LIST";
 };
+
+type itemDisplayType = "ALBUM" | "LIST";
 
 const ResourceList = ({
   resourceName,
-  items,
-  displayType = "LIST"
+  items
 }: ResourceContainerProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [itemDisplayOption, setItemDisplayOption] =
+    useState<itemDisplayType>("LIST");
 
   const openResourceCreateModal = () => {
     setIsModalOpen(isOpen => !isOpen);
@@ -39,15 +43,46 @@ const ResourceList = ({
           </button>
         </div>
         <section className="flex gap-2">
-          <TemplateIcon className="w-5 h-5 text-gray-400" />
-          <ViewListIcon className="w-5 h-5 text-gray-400" />
+          <TemplateIcon
+            className={cx(
+              `w-7 h-7 text-gray-400 hover:bg-slate-300 hover:text-white rounded-md p-1 transition-colors cursor-pointer`,
+              {
+                "bg-slate-400":
+                  itemDisplayOption === "ALBUM",
+                "text-white": itemDisplayOption === "ALBUM"
+              }
+            )}
+            onClick={() => {
+              setItemDisplayOption("ALBUM");
+            }}
+          />
+          <ViewListIcon
+            className={cx(
+              "w-7 h-7 text-gray-400 hover:bg-slate-300 hover:text-white rounded-md p-1 transition-colors cursor-pointer",
+              {
+                "bg-slate-400":
+                  itemDisplayOption === "LIST",
+                "text-white": itemDisplayOption === "LIST"
+              }
+            )}
+            onClick={() => {
+              setItemDisplayOption("LIST");
+            }}
+          />
         </section>
       </section>
       <section className="flex justify-between">
         <Input />
         <span className="text-sm">생성일자 오래된 순</span>
       </section>
-      <ul className="flex flex-col gap-4">
+      <motion.ul
+        layout
+        className={cx("flex-col gap-4", {
+          flex: itemDisplayOption === "LIST",
+          grid: itemDisplayOption === "ALBUM",
+          "grid-cols-4": itemDisplayOption === "ALBUM"
+        })}
+      >
         {items.map(item => (
           <Node
             name={item.name}
@@ -55,7 +90,7 @@ const ResourceList = ({
             status="RUNNING"
           />
         ))}
-      </ul>
+      </motion.ul>
       {isModalOpen && (
         <ResouceCreateModal
           resourceName={resourceName}

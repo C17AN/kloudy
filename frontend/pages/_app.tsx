@@ -1,7 +1,11 @@
 import Sidebar from "components/common/Sidebar";
 import "styles/globals.css";
 import type { AppProps } from "next/app";
-import { QueryClient, QueryClientProvider } from "react-query";
+import {
+  QueryClient,
+  QueryClientProvider
+} from "react-query";
+import { AnimatePresence } from "framer-motion";
 
 const queryClient = new QueryClient();
 
@@ -11,7 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Sidebar />
       <main className="pt-4 flex-1">
         <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
+          <AnimatePresence>
+            <Component {...pageProps} />
+          </AnimatePresence>
         </QueryClientProvider>
       </main>
     </div>
