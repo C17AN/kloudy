@@ -8,7 +8,11 @@ type SidebarItemProps = {
   onClick: () => void;
 };
 
-const SidebarItem = ({ text, isSelected, onClick }: SidebarItemProps) => {
+const SidebarItem = ({
+  text,
+  isSelected,
+  onClick
+}: SidebarItemProps) => {
   return (
     <li
       className={cx(

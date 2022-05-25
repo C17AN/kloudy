@@ -1,17 +1,40 @@
 import React from "react";
 import ResourceList from "components/common/ResourceList";
 import Title from "components/common/Title";
+import { useRouter } from "next/router";
+import { useQuery } from "react-query";
+import { getNodeList } from "api/k8s/node";
 
 type Props = {};
 
 const ClusterPage = (props: Props) => {
+  const router = useRouter();
+  const { resource } = router.query;
+  const resourceName = () => {
+    switch (resource) {
+      case "namespace":
+        return "네임스페이스";
+      case "node":
+        return "노드";
+      case "volume":
+        return "볼륨";
+      default:
+        return "";
+    }
+  };
+
+  const { data, isLoading, error } = useQuery(
+    "node",
+    getNodeList
+  );
+
   return (
     <div className="h-full flex flex-col">
       <Title text="클러스터 목록" />
-      {/* <ResourceList
-        resourceName="노드"
-        items={[{ name: "1" }, { name: "2" }]}
-      /> */}
+      <ResourceList
+        resourceName={resourceName()}
+        items={data}
+      />
     </div>
   );
 };

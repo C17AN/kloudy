@@ -24,12 +24,18 @@ const ResourceList = ({
 }: ResourceContainerProps) => {
   const [isCreateModalOpen, setIsCreateModalOpen] =
     useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] =
+    useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] =
     useState(false);
   const [itemDisplayOption, setItemDisplayOption] =
     useState<itemDisplayType>("LIST");
 
   const openResourceCreateModal = () => {
+    setIsCreateModalOpen(isOpen => !isOpen);
+  };
+
+  const openResourceDeleteModal = () => {
     setIsCreateModalOpen(isOpen => !isOpen);
   };
 
@@ -44,12 +50,6 @@ const ResourceList = ({
           <h3 className="text-2xl font-semibold mr-4">
             {resourceName} 목록
           </h3>
-          <button
-            className="text-xs text-gray-400 rounded-md py-2 px-4 bg-zinc-100 cursor-pointer hover:bg-slate-200 hover:text-coolGray-600 transition-colors"
-            onClick={openResourceCreateModal}
-          >
-            새 {resourceName} 생성
-          </button>
         </div>
         <section className="flex gap-2">
           <TemplateIcon
@@ -80,9 +80,23 @@ const ResourceList = ({
           />
         </section>
       </section>
-      <section className="flex justify-between">
-        <Input />
+      <section className="flex justify-between items-center">
+        {/* <Input /> */}
         <span className="text-sm">생성일자 오래된 순</span>
+        <section className="flex space-x-4">
+          <button
+            className="text-xs text-gray-400 rounded-md py-2 px-4 bg-zinc-100 cursor-pointer hover:bg-slate-200 hover:text-coolGray-600 transition-colors"
+            onClick={openResourceCreateModal}
+          >
+            새 {resourceName} 생성
+          </button>
+          <button
+            className="text-xs text-white rounded-md py-2 px-4 bg-red-300 cursor-pointer hover:bg-red-400 hover:text-gray-50 transition-colors"
+            onClick={openResourceDeleteModal}
+          >
+            선택한 {resourceName} 삭제
+          </button>
+        </section>
       </section>
       <motion.ul
         layout
