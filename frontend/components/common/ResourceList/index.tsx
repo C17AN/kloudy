@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Node from "./Item/Node";
+import Node from "./Content/Node/Item";
 import {
   TemplateIcon,
   ViewListIcon
@@ -10,6 +10,8 @@ import cx from "classnames";
 import { motion } from "framer-motion";
 import nodeConditionChecker from "utils/k8s/node/conditionChecker";
 import ResouceDetailModal from "./ResourceDetailModal";
+import NodeList from "./Content/Node/List";
+import NamespaceList from "./Content/Namespace/List";
 
 type ResourceContainerProps = {
   resourceName: string;
@@ -110,22 +112,20 @@ const ResourceList = ({
           }
         )}
       >
-        {items?.map(item => {
-          const { name, creationTimestamp } = item.metadata;
-          const { conditions } = item.status;
-          const isReady = nodeConditionChecker(conditions);
-
-          return (
-            <Node
-              name={name}
-              createdAt={creationTimestamp}
-              conditions={conditions}
-              key={item.name}
-              isReady={isReady}
-              onClick={openResourceDetailModal}
-            />
-          );
-        })}
+        {resourceName === "노드" && (
+          <NodeList
+            items={items}
+            openResourceDetailModal={
+              openResourceDetailModal
+            }
+          />
+        )}
+        {resourceName === "네임스페이스" && (
+          <NamespaceList
+            items={items}
+            onClick={openResourceDetailModal}
+          />
+        )}
       </motion.ul>
       {isCreateModalOpen && (
         <ResouceCreateModal
