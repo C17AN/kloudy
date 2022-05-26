@@ -1,11 +1,45 @@
 import React from "react";
+import {
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Legend,
+  Tooltip
+} from "recharts";
 
-type Props = {};
+const data = [
+  { name: "기동 중", value: 400, color: "#ccffcc" },
+  { name: "장애 발생", value: 300, color: "#ffcdcd" },
+  { name: "중지 중", value: 300, colod: "#aaebff" }
+];
 
-const StatusSummary = (props: Props) => {
+const StatusSummary = () => {
   return (
-    <div className="border-gray-200 border-[1px] rounded-md w-full h-64">
-      StatusSummary
+    <div className="w-full h-full border-[1px] border-gray-100">
+      <ResponsiveContainer>
+        <PieChart>
+          <Pie
+            dataKey="value"
+            data={data}
+            fill="#8884d8"
+            innerRadius={50}
+            legendType="circle"
+          />
+          <Tooltip
+            contentStyle={{
+              color: "red",
+              paddingTop: "0.25rem",
+              paddingBottom: "0.25rem",
+              borderRadius: 12
+            }}
+            itemStyle={{
+              color: "rgba(0,0,0,0.7)",
+              fontSize: 14
+            }}
+          />
+          <Legend verticalAlign="bottom" height={24} />
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 };
