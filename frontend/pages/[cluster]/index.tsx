@@ -1,15 +1,7 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext
-} from "react";
-import ResourceList from "components/common/ResourceList";
-import Title from "components/common/Title";
-import { useRouter } from "next/router";
-import { useQuery } from "react-query";
-import { getNodeList } from "api/k8s/node";
+import React, { createContext, useCallback } from "react";
 import NodeList from "components/pages/resource/Node";
 import NamespaceList from "components/pages/resource/Namespace";
+import { useRouter } from "next/router";
 import { resourceNameType } from "types/k8s/resourceName";
 
 export const ResourceContext = createContext<{
@@ -30,6 +22,8 @@ const ClusterPage = () => {
           return (
             <NamespaceList resourceName={resourceName} />
           );
+        default:
+          return <div>리소스가 없습니다.</div>;
       }
     },
     []

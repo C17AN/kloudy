@@ -6,13 +6,13 @@ import { NodeCondition } from "types/k8s/node/condition";
 type NamespaceProps = {
   name: string;
   createdAt: string;
-  onClick: () => void;
+  openNamespaceDetail: (namespaceName: string) => void;
 };
 
 const NamespaceItem = ({
   name,
   createdAt,
-  onClick
+  openNamespaceDetail
 }: NamespaceProps) => {
   return (
     <li
@@ -22,7 +22,9 @@ const NamespaceItem = ({
     >
       <section
         className="flex-1 m-4 cursor-pointer"
-        onClick={onClick}
+        onClick={() => {
+          openNamespaceDetail(name);
+        }}
       >
         <span className="text-lg font-semibold">
           {name}

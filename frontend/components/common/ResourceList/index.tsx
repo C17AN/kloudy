@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 import nodeConditionChecker from "utils/k8s/node/conditionChecker";
 import ResouceDetailModal from "./ResourceDetailModal";
 import NodeList from "./Content/Node/List";
-import NamespaceList from "./Content/Namespace/List";
+import NamespaceList from "./Content/Namespace/List/List";
 import { resourceNameType } from "types/k8s/resourceName";
 import getLocaleResourceName from "utils/k8s/getLocaleResourceName";
 

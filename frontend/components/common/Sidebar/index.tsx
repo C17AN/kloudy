@@ -15,6 +15,7 @@ import {
 import { getContextList } from "api/k8s/context";
 import { getNamespaceList } from "api/k8s/namespace";
 import { useRouter } from "next/router";
+import { resourceNameType } from "types/k8s/resourceName";
 
 type SidebarProps = {};
 
@@ -24,6 +25,19 @@ const Sidebar = ({}: SidebarProps) => {
   const [namespaceList, setNamespaceList] = useState<any>(
     []
   );
+
+  const queryResourceType = (
+    resourceType: resourceNameType
+  ) => {
+    router.replace(
+      `/<클러스터명>?resource=${resourceType}`,
+      undefined,
+      {
+        shallow: true
+      }
+    );
+  };
+
   const [selectedNamespace, setSelectedNamespace] =
     useState<any>();
 
@@ -71,39 +85,21 @@ const Sidebar = ({}: SidebarProps) => {
         text="노드 목록"
         icon={<ServerIcon className="w-4 h-4" />}
         onClick={() => {
-          router.push(
-            "클러스터 아이디/?resource=node",
-            undefined,
-            {
-              shallow: true
-            }
-          );
+          queryResourceType("node");
         }}
       />
       <SidebarItemContainer
         text="네임스페이스 목록"
         icon={<FolderOpenIcon className="w-4 h-4" />}
         onClick={() => {
-          router.push(
-            "클러스터 아이디/?resource=namespace",
-            undefined,
-            {
-              shallow: true
-            }
-          );
+          queryResourceType("namespace");
         }}
       />
       <SidebarItemContainer
         text="볼륨 목록"
         icon={<FolderOpenIcon className="w-4 h-4" />}
         onClick={() => {
-          router.push(
-            "클러스터 아이디/?resource=volume",
-            undefined,
-            {
-              shallow: true
-            }
-          );
+          queryResourceType("volume");
         }}
       />
     </aside>
