@@ -12,9 +12,11 @@ import nodeConditionChecker from "utils/k8s/node/conditionChecker";
 import ResouceDetailModal from "./ResourceDetailModal";
 import NodeList from "./Content/Node/List";
 import NamespaceList from "./Content/Namespace/List";
+import { resourceNameType } from "types/k8s/resourceName";
+import getLocaleResourceName from "utils/k8s/getLocaleResourceName";
 
 type ResourceContainerProps = {
-  resourceName: string;
+  resourceName: resourceNameType;
   items: any[];
 };
 
@@ -50,7 +52,7 @@ const ResourceList = ({
       <section className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <h3 className="text-2xl font-semibold mr-4">
-            {resourceName} 목록
+            {getLocaleResourceName(resourceName)} 목록
           </h3>
         </div>
         <section className="flex gap-2">
@@ -83,20 +85,23 @@ const ResourceList = ({
         </section>
       </section>
       <section className="flex justify-between items-center mb-4">
-        {/* <Input /> */}
         <span className="text-sm">생성일자 오래된 순</span>
         <section className="flex space-x-4">
           <button
             className="text-xs text-gray-400 rounded-md py-2 px-4 bg-zinc-100 cursor-pointer hover:bg-slate-200 hover:text-coolGray-600 transition-colors"
             onClick={openResourceCreateModal}
           >
-            새 {resourceName} 생성
+            {`새 ${getLocaleResourceName(
+              resourceName
+            )} 생성`}
           </button>
           <button
             className="text-xs text-white rounded-md py-2 px-4 bg-red-300 cursor-pointer hover:bg-red-400 hover:text-gray-50 transition-colors"
             onClick={openResourceDeleteModal}
           >
-            선택한 {resourceName} 삭제
+            {`선택한 ${getLocaleResourceName(
+              resourceName
+            )} 삭제`}
           </button>
         </section>
       </section>
@@ -112,7 +117,7 @@ const ResourceList = ({
           }
         )}
       >
-        {resourceName === "노드" && (
+        {resourceName === "node" && (
           <NodeList
             items={items}
             openResourceDetailModal={
@@ -120,7 +125,7 @@ const ResourceList = ({
             }
           />
         )}
-        {resourceName === "네임스페이스" && (
+        {resourceName === "namespace" && (
           <NamespaceList
             items={items}
             onClick={openResourceDetailModal}

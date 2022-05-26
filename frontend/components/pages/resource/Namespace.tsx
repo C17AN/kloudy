@@ -1,14 +1,16 @@
-import { getNamespaceList } from "api/k8s/namespace";
-import { getNodeList } from "api/k8s/node";
 import ResourceList from "components/common/ResourceList";
-import { useRouter } from "next/router";
 import React from "react";
+import { getNamespaceList } from "api/k8s/namespace";
 import { useQuery } from "react-query";
+import { resourceNameType } from "types/k8s/resourceName";
 
-type Props = {};
+type NamespaceListProps = {
+  resourceName: resourceNameType;
+};
 
-const NamespaceList = () => {
-  const router = useRouter();
+const NamespaceList = ({
+  resourceName
+}: NamespaceListProps) => {
   const { data, isLoading, error } = useQuery(
     "namespace",
     getNamespaceList
@@ -16,7 +18,7 @@ const NamespaceList = () => {
 
   return (
     <ResourceList
-      resourceName={"네임스페이스"}
+      resourceName={resourceName}
       items={data}
     />
   );
