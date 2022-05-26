@@ -45,7 +45,7 @@ const ResourceList = ({
   };
 
   return (
-    <div className="flex-1 rounded-md border-[1px] py-4 px-6 pb-24 mt-2 border-gray-200 h-full w-full overflow-y-hidden">
+    <div className="flex-1 rounded-md border-[1px] py-4 px-6 pb-24 border-gray-200 h-full w-full overflow-y-hidden">
       <section className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <h3 className="text-2xl font-semibold mr-4">

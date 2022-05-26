@@ -1,4 +1,5 @@
 import { ArrowNarrowLeftIcon } from "@heroicons/react/solid";
+import Select from "components/common/Select";
 import Router, { useRouter } from "next/router";
 import React from "react";
 import StatusSummary from "../StatusSummary";
@@ -16,9 +17,9 @@ const NamespaceDetail = ({
   };
 
   return (
-    <div className="flex-1 rounded-md border-[1px] py-4 px-6 pb-24 mt-2 border-gray-200 h-full w-full overflow-y-hidden">
-      <div className="flex items-center justify-between">
-        <h3 className="text-2xl font-semibold">
+    <div className="flex flex-col flex-1 rounded-md border-[1px] py-4 px-6 border-gray-200 h-full w-full overflow-y-hidden">
+      <div className="flex items-center justify-between border-b-[1px] pb-4">
+        <h3 className="text-xl font-semibold">
           네임스페이스 : {namespaceName}
         </h3>
         <button
@@ -31,18 +32,25 @@ const NamespaceDetail = ({
           </p>
         </button>
       </div>
-      <div>리소스 선택</div>
-      <section className="flex h-full gap-8">
+      <section className="flex gap-8 flex-1 h-full">
         <div className="flex-1">
-          <p className="text-md mb-4 font-semibold text-slate-600">
-            요약
+          <div className="flex items-center justify-between h-16">
+            <p className="text-lg font-semibold text-slate-600">
+              요약
+            </p>
+            <Select items={[{ name: "모든 리소스" }]} />
+          </div>
+          <div className="h-2/5 border-[1px] border-gray-200 rounded-md p-4">
+            <StatusSummary />
+          </div>
+          <p className="flex items-center text-lg font-semibold text-slate-600 h-16">
+            이벤트 로그
           </p>
-          <StatusSummary />
-          <p>이벤트 로그</p>
+          <div className="h-2/5 border-[1px] border-gray-200 rounded-md p-4"></div>
         </div>
         <section className="flex-1">
-          <div className="flex items-center justify-between mb-4">
-            <p className="text-md font-semibold text-slate-600">
+          <div className="flex items-center justify-between h-16">
+            <p className="text-lg font-semibold text-slate-600">
               하위 리소스 목록
             </p>
             <div className="space-x-4">
@@ -54,7 +62,7 @@ const NamespaceDetail = ({
               </button>
             </div>
           </div>
-          <div className="h-full border-[1px] border-gray-200">
+          <div className="h-[90%] mb-2 border-[1px] border-gray-200 rounded-md p-4">
             파드 1
           </div>
         </section>

@@ -15,12 +15,13 @@ const data = [
 
 const StatusSummary = () => {
   return (
-    <div className="w-full h-full border-[1px] border-gray-100">
+    <>
       <ResponsiveContainer>
         <PieChart>
           <Pie
             dataKey="value"
             data={data}
+            cx={"50%"}
             fill="#8884d8"
             innerRadius={50}
             legendType="circle"
@@ -40,7 +41,7 @@ const StatusSummary = () => {
           <Legend verticalAlign="bottom" height={24} />
         </PieChart>
       </ResponsiveContainer>
-    </div>
+    </>
   );
 };
 
