@@ -82,7 +82,7 @@ const ResourceList = ({
           />
         </section>
       </section>
-      <section className="flex justify-between items-center">
+      <section className="flex justify-between items-center mb-4">
         {/* <Input /> */}
         <span className="text-sm">생성일자 오래된 순</span>
         <section className="flex space-x-4">

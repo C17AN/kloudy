@@ -19,9 +19,11 @@ const NamespaceItem = ({
       className={
         "flex items-center pr-4 bg-gray-50 hover:bg-opacity-70 hover:bg-slate-200 rounded-md hover:scale-[1.01] transition-all shadow"
       }
-      onClick={onClick}
     >
-      <section className="flex-1 m-4 cursor-pointer">
+      <section
+        className="flex-1 m-4 cursor-pointer"
+        onClick={onClick}
+      >
         <span className="text-lg font-semibold">
           {name}
         </span>
@@ -29,7 +31,7 @@ const NamespaceItem = ({
           <div className="flex gap-2 items-center"></div>
         </div>
         <span className="text-sm">
-          생성일 : {createdAt}
+          생성일 : {new Date(createdAt).toLocaleString()}
         </span>
       </section>
       <Checkbox />

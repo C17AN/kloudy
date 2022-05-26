@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div className="flex h-full">
       <Sidebar />
-      <main className="pt-4 flex-1">
+      <main className="flex-1">
         <QueryClientProvider client={queryClient}>
           <AnimatePresence>
             <Component {...pageProps} />

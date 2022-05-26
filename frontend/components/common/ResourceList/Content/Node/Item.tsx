@@ -41,10 +41,13 @@ const NodeItem = ({
         <div className="text-sm flex items-center mb-2">
           <div className="flex gap-2 items-center">
             <p
-              className={cx("w-3 h-3 rounded-md", {
-                "bg-green-300": isReady,
-                "bg-red-300": !isReady
-              })}
+              className={cx(
+                "w-3 h-3 rounded-md animate-pulse",
+                {
+                  "bg-green-300": isReady,
+                  "bg-red-300": !isReady
+                }
+              )}
             />
             <span className="text-gray-700">
               {readiness}
@@ -52,7 +55,7 @@ const NodeItem = ({
           </div>
         </div>
         <span className="text-sm">
-          생성일 : {createdAt}
+          생성일 : {new Date(createdAt).toLocaleString()}
         </span>
       </section>
       <Checkbox />

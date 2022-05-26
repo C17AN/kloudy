@@ -28,7 +28,7 @@ const ClusterPage = (props: Props) => {
 
   return (
     <div className="h-full flex flex-col">
-      <Title text="클러스터 목록" />
+      {/* <Title text="클러스터 목록" /> */}
       {resource === "node" && <NodeList />}
       {resource === "namespace" && <NamespaceList />}
     </div>
