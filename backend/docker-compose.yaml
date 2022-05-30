@@ -1,0 +1,12 @@
+services:
+  kloud-backend:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - type: bind
+        source: /Users/chanmin/.kube
+        target: /usr/lib/.kube
+      - type: bind
+        source: /Users/chanmin/.minikube
+        target: /Users/chanmin/.minikube

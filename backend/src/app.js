@@ -10,6 +10,7 @@ import serviceRouter from "./controllers/service.js";
 import namespaceRouter from "./controllers/namespace.js";
 import cors from "cors"
 import bodyParser from "body-parser"
+import fs from "fs"
 
 const app = express();
 app.use(cors())
@@ -17,7 +18,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 export const kc = new k8s.KubeConfig();
+// kc.loadFromFile('/usr/lib/.kube/config')
+// kc.loadFromString(fs.readFileSync('/Users/chanmin/.kube/config', 'utf8'))
+// kc.loadFromString(fs.readFileSync('/usr/lib/.kube/config', 'utf8'))
 export const metricsClient = new k8s.Metrics(kc);
+
+fs.readdir('./', (err, files) => {
+  files.forEach(file => {
+    console.log(file);
+  });
+});
 
 app.listen(8080, () => {
   console.log("listening on 8080");
