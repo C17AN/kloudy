@@ -1,8 +1,10 @@
 import Modal from "components/common/Modal";
 import React from "react";
+import { resourceNameType } from "types/k8s/resourceName";
+import getLocaleResourceName from "utils/k8s/getLocaleResourceName";
 
 type ResouceCreateModalProps = {
-  resourceName: string;
+  resourceName: resourceNameType;
   onClose: () => void;
 };
 
@@ -14,7 +16,7 @@ const ResouceDetailModal = ({
     <Modal>
       <div className="bg-white relative top-1/2 mx-auto py-4 px-6 rounded-md w-full max-w-2xl">
         <h1 className="font-bold text-2xl">
-          {resourceName} 상세 정보
+          {getLocaleResourceName(resourceName)} 상세 정보
         </h1>
         <section className="flex justify-end space-x-4">
           <button

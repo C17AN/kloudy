@@ -38,7 +38,12 @@ const NamespaceDetail = ({
             <p className="text-lg font-semibold text-slate-600">
               요약
             </p>
-            <Select items={[{ name: "모든 리소스" }]} />
+            <Select
+              items={[
+                { name: "모든 리소스" },
+                { name: "서비스" }
+              ]}
+            />
           </div>
           <div className="h-2/5 border-[1px] border-gray-200 rounded-md p-4">
             <StatusSummary />
